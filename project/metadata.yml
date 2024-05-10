@@ -1,0 +1,12 @@
+---
+:id: 221232620
+:submitters:
+- :name: Michael Ginzburg
+  :email: ginzb010@umn.edu
+:created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: 2023-12-21 05:52:34.497156000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: America/Los_Angeles
+  time: 2023-12-20 21:52:34.497156000 Z
+:status: processed
+:score: 88.0
