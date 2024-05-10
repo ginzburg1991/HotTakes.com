@@ -1,0 +1,51 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Hot Takes
+    script(src='/resources/js/theme.js' defer = '')
+    script(src='/resources/js/takes.js' defer = '')
+    link(rel='stylesheet' href='/resources/css/main.css')
+    link(rel='stylesheet' href='/resources/css/main.dark.css')
+  body(id='dark-mode')
+    h1 Hot Takes
+    nav
+      a.button(href="/home?sort=recent") Recent Takes
+      a.button(href="/home?sort=popular") Popular Takes
+      a.button(href="/home?sort=all") Edit Takes
+      a.button(href="/register") Register
+      a.button#themeToggle Change Theme
+      if isLoggedIn
+        a.button(href="/logout") Logout
+        span.logged-in-username Logged in as #{username}  // Display the username here
+      else
+        a.button(href="/login") Login
+
+    if sortBy !== 'all'
+      h2 Make a Take
+      form#newPostForm(action="/newTake", method="post")
+        textarea(name="content", maxlength="50", placeholder="What's your hot take (Max 50 characters)")
+        button.button(type="submit") Post
+
+    h2 Posts
+    each take in takes
+      article.post.boxed(id=`post-${take.id}`)
+        p Take made by: #{take.username}
+        p(id=`post-content-${take.id}`)= take.take
+        div
+          span.like-count(id=`like-count-${take.id}`) Likes: #{take.likes}
+          button.like-btn.button(data-post-id=`${take.id}`) Like
+          if sortBy === 'all'
+            button.edit-btn.button(data-post-id=`${take.id}`) Edit
+            button.delete-btn.button(data-post-id=`${take.id}`) Delete
+
+    if sortBy !== 'all' && takes.length > 0
+      footer.pagination
+        if currentPage > 1
+          a(href=`/home?sort=${sortBy}&page=${currentPage - 1}`).button Prev
+        if hasNextPage
+          a(href=`/home?sort=${sortBy}&page=${currentPage + 1}`).button Next
+    else if takes.length === 0
+      p No posts to show
+
+    

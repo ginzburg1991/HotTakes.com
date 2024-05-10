@@ -1,0 +1,26 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Register
+    script(src='/resources/js/theme.js' defer = '')
+    link(rel='stylesheet' href='/resources/css/main.css')
+    link(rel='stylesheet' href='/resources/css/main.dark.css')
+  body(id='dark-mode')
+    nav
+      a.button(href="/home?sort=recent") Recent Posts
+      a.button(href="/home?sort=popular") Popular Posts
+      a.button(href="/home?sort=all") Edit Posts
+      a.button#themeToggle Change Theme
+      
+    h1 Register
+    form(action="/register", method="post")
+      div
+        label(for='username') Username:
+        input(type='text', name='username', required)
+      div
+        label(for='password') Password:
+        input(type='password', name='password', required)
+      div
+        button.button(type='submit') Register
+    a(href='/home').button Back to Home

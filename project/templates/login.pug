@@ -1,0 +1,27 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Login
+    link(rel='stylesheet' href='/resources/css/main.css')
+    link(rel='stylesheet' href='/resources/css/main.dark.css')
+    script(src='/resources/js/theme.js' defer)
+    script(src='/resources/js/login.js' defer)
+    nav
+      a.button(href="/home?sort=recent") Recent Takes
+      a.button(href="/home?sort=popular") Popular Takes
+      a.button(href="/home?sort=all") Edit Takes
+      a.button(href="/register") Register
+      a.button#themeToggle Change Theme
+  body(id='dark-mode')
+    h1 Login
+    form#loginForm(action="/login", method="post")
+      div
+        label(for='username') Username:
+        input(type='text', name='username', required)
+      div
+        label(for='password') Password:
+        input(type='password', name='password', required)
+      div
+        button.button(type='submit') Login
+    a(href='/home', class='button lower-button') Back to Home
